@@ -23,7 +23,7 @@ class App extends Component {
         <div className="header">
           <h2>ThoughtBox</h2>
         </div>
-        <CreateThought createThought={this.createThought.bind(this)} />
+        <CreateThought handleSubmit={this.createThought.bind(this)} />
         <div>
           <ThoughtList thoughtList={this.state.thoughts} />
         </div>

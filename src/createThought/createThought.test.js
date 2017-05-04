@@ -59,8 +59,9 @@ describe('CreateThought', () => {
 
   it('fires submitIdea function with the data from state as an argument, and input fields go back to empty strings', () => {
     const mockedSubmit = jest.fn();
+
     const wrapper = mount(
-      <CreateThought createThought={mockedSubmit} />
+      <CreateThought handleSubmit={mockedSubmit} />
     );
     const expectedState = {
       title: '',
@@ -70,14 +71,10 @@ describe('CreateThought', () => {
     input.simulate('change', { target: { value: 'abc' } });
     wrapper.find('button').simulate('click');
 
-
-    // What input field are we trying to target? What is the action we want to simulate?
-
-    // Find the DOM element you want to click on and click on that thing
-
-    // Expect that the value of the input node equals a string
+    expect(wrapper.state()).toEqual(expectedState);
+    expect(input.node.value).toEqual('');
+    expect(mockedSubmit).toHaveBeenCalledTimes(1);
+    expect(mockedSubmit).toHaveBeenCalledWith({title: '', body:'abc'})
   });
-
-
 
 });
